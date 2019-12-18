@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+   <html>
+
+       
+
+      <p>
+          <br> var img;<br> 
+         var initials ='xy'; // your initials<br> 
+         var choice = '1'; // starting choice, so it is not empty<br> 
+         var screenbg = 250; // off white background<br> 
+         var lastscreenshot=1; // last screenshot never taken<br> 
+         <br> 
+         function preload() {<br> 
+         // preload() runs once, it may make you wait<br> 
+         //  img = loadImage('cat.jpg');  // cat.jpg needs to be next to this .js file<br> 
+         // you can link to an image on your github account<br> 
+           img = loadImage('https://nitayang.github.io/portfolio/images/eye.jpg');<br> 
+         }
+         <br> 
+         function setup() {<br> 
+         createCanvas(600, 400);  // canvas size<br> 
+         background(screenbg);   // use our background screen color<br> 
+         
+         }<br> 
+         <br> 
+         function draw() {<br> 
+           if (keyIsPressed) {<br> 
+             choice = key; // set choice to the key that was pressed<br> 
+             clear_print(); // check to see if it is clear screen or save image<br> 
+           }<br> 
+           if (mouseIsPressed){<br> 
+             newkeyChoice(choice);  // if the mouse is pressed call newkeyChoice<br> 
+           }<br> 
+         }<br> 
+         
+         function newkeyChoice(toolChoice) { //toolchoice is the key that was pressed<br> 
+           // the key mapping if statements that you can change to do anything you want.<br> 
+           // just make sure each key option has the a stroke or fill and then what type of <br> 
+           // graphic function<br> 
+           <br> 
+          if (toolChoice == '1' ) {  // first tool<br> 
+            
+             stroke(0);<br> 
+             circle(mouseX, mouseY, 100,100);<br> 
+             <br> 
+           } else if (toolChoice == '2') { // second tool<br> 
+            <br> 
+             stroke(20);<br> 
+             line(mouseX, mouseY, pmouseX, pmouseY);<br> 
+           } else if (toolChoice == '3') { // third tool<br> 
+            <br> 
+             stroke(300, 100, 0, 80);<br> 
+             line(mouseX, mouseY, pmouseX, pmouseY);<br> 
+           } else if (toolChoice == '4') {<br> 
+            <br> 
+             stroke(0, 0, 255);<br> 
+             circle(mouseX, mouseY, pmouseX, pmouseY);<br> 
+           } else if (key == '5') { // this tool calls a function<br> 
+             stroke(0, 0, 255);<br> 
+             <br> 
+             circle(mouseX, mouseY, pmouseX, pmouseY);<br> 
+           } else if (toolChoice == '6') {<br> 
+            <br> 
+             stroke(200);<br> 
+             circle(mouseX, mouseY, pmouseX, pmouseY);<br> 
+           } else if (toolChoice == '7') {<br> 
+            <br> 
+             fill(0);<br> 
+             circle(mouseX, mouseY, 20, 20);<br> 
+           } else if (toolChoice == '8') {<br> 
+            <br> 
+             fill(0);<br> 
+             circle(mouseX, mouseY, 20, 20);<br> 
+           } else if (toolChoice == '9') {<br> 
+            <br> 
+             fill(0, 0, 0, 0);<br> 
+             circle(mouseX, mouseY, 40, 40);<br> 
+           } else if (toolChoice == '0') {<br> 
+             stroke(0, 0);<br> 
+             rect(random(200), random(200), random(200), random(200));<br> 
+             circle(mouseX, mouseY, 200, 200);<br> 
+           } else if (toolChoice == 'g' || toolChoice == 'G') { // g places the image we pre-loaded<br> 
+             image(img, mouseX, mouseY);<br> 
+             <br> 
+           }<br> 
+          }<br> 
+          
+         function testbox() {<br> 
+         // this is a test function that will show you how you can put your own functions into the sketch<br> 
+           x = mouseX;<br> 
+           y = mouseY;<br> 
+           fill(200, 20, 20);<br> 
+           rect(30+x, 120+y, 100, 100);<br> 
+           fill(20, 20, 200);<br> 
+           rect(x-34, y-56, 100, 100);<br> 
+           fill(20, 20, 20);<br> 
+           rect(x,y,x+34, y+20);<br> 
+         }<br> 
+         <br> 
+         function clear_print() {<br> 
+         // this will do one of two things, x clears the screen by resetting the background<br> 
+         // p calls the routine saveme, which saves a copy of the screen<br> 
+           if (key == 'x' || key == 'X') {<br> 
+             background(screenbg); // set the screen back to the background color<br> 
+           } else if (key == 'p' || key == 'P') {<br> 
+              saveme();  // call saveme which saves an image of the screen<br> 
+           }<br> 
+         }<br> 
+         
+         function saveme(){<br> 
+             //this will save the name as the intials, date, time and a millis counting number.<br> 
+             // it will always be larger in value then the last one.<br> 
+           filename=initials+day() + hour() + minute() +second();<br> 
+           if (second()!=lastscreenshot) { // don't take a screenshot if you just took one<br> 
+             saveCanvas(filename, 'jpg');<br> 
+           }<br> 
+           lastscreenshot=second(); // set this to the current second so no more than one per second<br> 
+           
+         }</p>
+
+         <p><a href="7.html">BACK</a></p>
+
+</html>
